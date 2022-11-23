@@ -1,0 +1,36 @@
+
+#DAA practical 1
+
+#1]. Write a program non recursive and recursive program to calculate Fibonacci number and analyze their time and space complexity. 
+
+def IterativeFibo(n):
+    f1=0
+    f2=1
+    for i in range(n):
+        if i<2:
+            print(i,end =' ')
+        else :
+            f3 = f1 + f2
+            f1 = f2
+            f2 = f3
+            print(f3,end=' ')
+
+#function to implement recursive approach
+
+# Python program to display the Fibonacci sequence
+
+def recur_fibo(n):
+   if n <= 1:
+       return n
+   else:
+       return(recur_fibo(n-1) + recur_fibo(n-2))
+
+nterms = 10
+
+# check if the number of terms is valid
+if nterms <= 0:
+   print("Plese enter a positive integer")
+else:
+   print("Fibonacci sequence:")
+   for i in range(nterms):
+       print(recur_fibo(i))

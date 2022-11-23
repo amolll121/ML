@@ -1,0 +1,94 @@
+#DAA Practical 5
+
+#5].Write a program to print N Queen problem.
+#Design 8 queens matrix having first queen placed
+
+
+global N
+N = int(input("enter no. of queeens"))
+ 
+def printSolution(board):
+    for i in range(N):
+        for j in range(N):
+            print (board[i][j],end=' ')
+        print()
+ 
+ 
+
+def isSafe(board, row, col):
+ 
+    # Check this row on left side
+    for i in range(col):
+        if board[row][i] == 1:
+            return False
+ 
+    # Check upper diagonal on left side
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+ 
+    # Check lower diagonal on left side
+    for i, j in zip(range(row, N, 1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+ 
+    return True
+ 
+def solveNQUtil(board, col):
+    # base case: If all queens are placed
+    # then return true
+    if col >= N:
+        return True
+ 
+    # Consider this column and try placing
+    # this queen in all rows one by one
+    for i in range(N):
+ 
+        if isSafe(board, i, col):
+            # Place this queen in board[i][col]
+            board[i][col] = 1
+ 
+           
+            if solveNQUtil(board, col + 1) == True:
+                return True
+ 
+           
+            board[i][col] = 0
+ 
+ 
+    return False
+ 
+
+def solveNQ():
+    board=[]
+    board=[[0 for i in range(N)] for j in range(N)]
+    
+        
+    '''N=int(input("enter no. of rows and col"))
+    board=[[0]*N]*N
+    for i in board:
+      print(i)'''
+   
+ 
+    if solveNQUtil(board, 0) == False:
+        print ("Solution does not exist")
+        return False
+ 
+    printSolution(board)
+    return True
+ 
+# driver program to test above function
+solveNQ()
+
+
+def fib(n): 
+    a, b = 0, 1 
+    while a < n: 
+        yield a 
+        a, b = b, a + b 
+ 
+# Print all the fibonacci sequence up to 10000  
+for n in fib(10000): 
+	print(n)
+
+
